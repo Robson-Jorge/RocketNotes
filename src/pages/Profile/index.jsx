@@ -20,13 +20,19 @@ export function Profile() {
   const [passwordOld, setPasswordOld] = useState('')
   const [passwordNew, setPasswordNew] = useState('')
   const [avatarFile, setAvatarFile] = useState(null)
-  const avatarUrl = user.avatar
-    ? `${api.defaults.baseURL}/files/${user.avatar}`
-    : avatarPlaceholder
+  const avatarUrl = user.avatar ? user.avatar : avatarPlaceholder
 
   const navigate = useNavigate()
 
   async function handleUpdate() {
+    if (!avatarFile) {
+      const confirm = window.confirm(
+        'Antes de salvar suas informações, você pode optar por adicionar ou atualizar sua foto de perfil. Selecione uma imagem e clique em "Salvar Foto" 💾 antes de prosseguir com as alterações no perfil. Deseja continuar sem alterar sua foto de perfil?',
+      )
+
+      if (!confirm) return
+    }
+
     const updated = {
       name,
       email,

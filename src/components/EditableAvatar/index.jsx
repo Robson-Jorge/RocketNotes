@@ -4,9 +4,10 @@ import AvatarEditor from 'react-avatar-editor'
 import { Actions, Container } from './styles'
 import { useState } from 'react'
 
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
+
 export const EditableAvatar = ({ avatarUrl, setAvatarFile }) => {
   const [image, setImage] = useState(avatarUrl)
-  const [avatar, setAvatar] = useState(avatarUrl)
   const [scale, setScale] = useState(1)
   const [isEditing, setIsEditing] = useState(false)
   const [editor, setEditor] = useState(null)
@@ -36,7 +37,6 @@ export const EditableAvatar = ({ avatarUrl, setAvatarFile }) => {
   const handleAvatarSave = () => {
     if (editor) {
       const canvas = editor.getImageScaledToCanvas()
-      const dataURL = canvas.toDataURL()
 
       canvas.toBlob((blob) => {
         if (blob) {
@@ -45,7 +45,6 @@ export const EditableAvatar = ({ avatarUrl, setAvatarFile }) => {
         }
       }, 'image/png')
 
-      setAvatar(dataURL)
       setIsEditing(false)
     }
   }
@@ -68,7 +67,7 @@ export const EditableAvatar = ({ avatarUrl, setAvatarFile }) => {
             border={0}
           />
         ) : (
-          <img src={avatar} alt="Avatar" />
+          <img src={avatarUrl || avatarPlaceholder} alt="Avatar" />
         )}
       </div>
 

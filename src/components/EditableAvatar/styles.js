@@ -10,10 +10,11 @@ export const Container = styled.div`
   & > div:nth-child(1) {
     position: relative;
     margin: -124px auto 20px;
+    width: 186px;
+    height: 186px;
 
     > img {
-      width: 186px;
-      height: 186px;
+      width: 100%;
       border-radius: 50%;
     }
 
