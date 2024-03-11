@@ -5,6 +5,7 @@ export const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
   const [data, setData] = useState({})
+  const [loading, setLoading] = useState(true)
   async function signIn({ email, password }) {
     try {
       const response = await api.post('/sessions', {
@@ -31,7 +32,6 @@ function AuthProvider({ children }) {
   function signOut() {
     localStorage.removeItem('@RocketNotes:token')
     localStorage.removeItem('@RocketNotes:user')
-
     setData({})
   }
 
@@ -73,11 +73,12 @@ function AuthProvider({ children }) {
         user: JSON.parse(user),
       })
     }
+    setLoading(false)
   }, [])
 
   return (
     <AuthContext.Provider
-      value={{ signIn, user: data.user, signOut, updateProfile }}
+      value={{ signIn, user: data.user, signOut, updateProfile, loading }}
     >
       {children}
     </AuthContext.Provider>
