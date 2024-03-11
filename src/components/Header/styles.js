@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { fadeInDown } from '../../styles/animate'
 
 export const Container = styled.header`
   grid-area: header;
+
+  opacity: 0;
+  animation: ${fadeInDown} 1s forwards;
 
   height: 105px;
   width: 100%;
@@ -52,5 +56,9 @@ export const Logout = styled.button`
   > svg {
     color: ${({ theme }) => theme.COLORS.GRAY_100};
     font-size: 36px;
+  }
+
+  > svg:hover {
+    color: ${({ theme }) => theme.COLORS.ORANGE};
   }
 `

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { fadeInUp, fadeInLeft } from '../../styles/animate'
 
 export const Container = styled.div`
   width: 100%;
@@ -20,6 +21,9 @@ export const Container = styled.div`
 export const Brand = styled.div`
   grid-area: brand;
 
+  opacity: 0;
+  animation: 0.8s ${fadeInLeft} ease-in-out 0.1s forwards;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,6 +40,9 @@ export const Brand = styled.div`
 export const Menu = styled.ul`
   grid-area: menu;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+
+  opacity: 0;
+  animation: 0.8s ${fadeInLeft} ease-in-out 0.1s forwards;
 
   padding-top: 64px;
   text-align: center;
@@ -55,10 +62,18 @@ export const Content = styled.div`
 
   padding: 0 64px;
   overflow-y: auto;
+
+  > section {
+    opacity: 0;
+    animation: 0.8s ${fadeInUp} ease-in-out 0.1s forwards;
+  }
 `
 
 export const NewNote = styled(Link)`
   grid-area: newnote;
+
+  opacity: 0;
+  animation: 0.8s ${fadeInLeft} ease-in-out 0.1s forwards;
 
   background-color: ${({ theme }) => theme.COLORS.ORANGE};
   color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
