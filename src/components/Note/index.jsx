@@ -13,7 +13,7 @@ export function Note({ data, onDeleteNote, ...rest }) {
           ))}
         </footer>
       )}
-      <ButtonDelete size={20} onClick={onDeleteNote} />
+      {onDeleteNote && <ButtonDelete size={20} onClick={onDeleteNote} />}
     </Container>
   )
 }
