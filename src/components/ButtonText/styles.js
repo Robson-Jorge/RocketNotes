@@ -8,4 +8,10 @@ export const Container = styled.button`
   border: none;
   font-size: 16px;
   text-transform: capitalize;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.COLORS.ORANGE};
+    transform: scale(1.1);
+  }
 `
