@@ -1,15 +1,8 @@
-import { Textarea } from '../../components/Textarea'
-import { NoteItem } from '../../components/NoteItem'
-import { Section } from '../../components/Section'
-import { Header } from '../../components/Header'
-import { Button } from '../../components/Button'
-import { Input } from '../../components/Input'
-import { Container, Form } from './styles'
-
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { api } from '../../services/api'
-import { ButtonText } from '../../components/ButtonText'
+import { Container } from './styles'
+import { ButtonText, EditableNoteForm, Header } from '../../components/index'
 
 export function New() {
   const [title, setTitle] = useState('')

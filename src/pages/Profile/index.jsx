@@ -1,15 +1,16 @@
-import { FiArrowLeft, FiUser, FiMail, FiLock } from 'react-icons/fi'
-import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
-
-import { EditableAvatar } from '../../components/EditableAvatar'
-import { Button } from '../../components/Button'
-import { Input } from '../../components/Input'
-import { Container, Form } from './styles'
-
-import { useAuth } from '../../hooks/auth'
-import { api } from '../../services/api'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/auth'
+import { api } from '../../services/api'
+import { FiArrowLeft, FiUser, FiMail, FiLock } from 'react-icons/fi'
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
+import { Container, Form } from './styles'
+import {
+  Button,
+  ButtonDelete,
+  EditableAvatar,
+  Input,
+} from '../../components/index'
 
 export function Profile() {
   const { user, updateProfile } = useAuth()
