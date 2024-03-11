@@ -28,8 +28,15 @@ export function Details() {
 
   useEffect(() => {
     async function fetchNote() {
-      const response = await api.get(`/notes/${id}`)
-      setData(response.data)
+      try {
+        const response = await api.get(`/notes/${id}`)
+
+        setData(response.data)
+      } catch (error) {
+        if (error) {
+          navigate('/404')
+        }
+      }
     }
     fetchNote()
   }, [])
