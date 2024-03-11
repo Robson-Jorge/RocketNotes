@@ -41,6 +41,17 @@ export function Home() {
     navigate(`/details/${id}`)
   }
 
+  function handleRemove(id, event) {
+    event.stopPropagation()
+    const confirm = window.confirm('Tem certeza que deseja excluir essa nota?')
+    if (confirm) {
+      api.delete(`/notes/${id}`).then(() => {
+        const filteredNotes = notes.filter((note) => note.id !== id)
+        setNotes(filteredNotes)
+      })
+    }
+  }
+
   useEffect(() => {
     async function fetch() {
       const response = await api.get('/tags')
@@ -102,6 +113,7 @@ export function Home() {
               key={String(note.id)}
               data={note}
               onClick={() => handleDetails(note.id)}
+                onDeleteNote={(event) => handleRemove(note.id, event)}
             />
           ))}
         </Section>
