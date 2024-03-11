@@ -10,8 +10,12 @@ export function SignIn() {
   const [password, setPassword] = useState('')
   const { signIn } = useAuth()
 
+  const [loading, setLoading] = useState(false)
+
   function handleSignIn() {
+    setLoading(true)
     signIn({ email, password })
+    setLoading(false)
   }
 
   return (
@@ -37,7 +41,7 @@ export function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button title="Entrar" onClick={handleSignIn} />
+        <Button title="Entrar" loading={loading} onClick={handleSignIn} />
 
         <Link to="/register">Criar conta</Link>
       </Form>
