@@ -13,7 +13,9 @@ import {
 } from '../../components/index'
 
 export function Profile() {
-  const { user, updateProfile } = useAuth()
+  const { user, updateProfile, signOut } = useAuth()
+
+  const [loading, setLoading] = useState(false)
 
   const [name, setName] = useState(user.name)
   const [email, setEmail] = useState(user.email)
@@ -40,8 +42,31 @@ export function Profile() {
       old_password: passwordOld,
     }
 
+    setLoading(true)
     const userUpdated = Object.assign(user, updated)
     await updateProfile({ user: userUpdated, avatarFile })
+    setLoading(false)
+
+    navigate(-1)
+  }
+
+  async function handleDeleteAccount() {
+    const confirm = window.confirm(
+      'Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.',
+    )
+
+    if (!confirm) return
+
+    try {
+      await api.delete('/users', { user })
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.data.message)
+      }
+    }
+
+    navigate('/', { replace: true })
+    signOut()
   }
 
   function handleBack() {
@@ -91,7 +116,12 @@ export function Profile() {
           onChange={(e) => setPasswordNew(e.target.value)}
         />
 
-        <Button title="Salvar" onClick={handleUpdate} />
+        <ButtonDelete
+          size={18}
+          title={'Excluir conta'}
+          onClick={handleDeleteAccount}
+        />
+        <Button title="Salvar" loading={loading} onClick={handleUpdate} />
       </Form>
     </Container>
   )
