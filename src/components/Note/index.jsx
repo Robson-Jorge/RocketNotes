@@ -1,7 +1,8 @@
 import { Container } from './styles'
 import { Tag } from '../Tag'
+import { ButtonDelete } from '../ButtonDelete'
 
-export function Note({ data, ...rest }) {
+export function Note({ data, onDeleteNote, ...rest }) {
   return (
     <Container {...rest}>
       <h1>{data.title}</h1>
@@ -12,6 +13,7 @@ export function Note({ data, ...rest }) {
           ))}
         </footer>
       )}
+      <ButtonDelete size={20} onClick={onDeleteNote} />
     </Container>
   )
 }

@@ -9,6 +9,7 @@ export const Container = styled.button`
 
   padding: 22px;
   margin-bottom: 16px;
+  position: relative;
 
   > h1 {
     flex: 1;
@@ -22,5 +23,18 @@ export const Container = styled.button`
     width: 100%;
     display: flex;
     margin-top: 24px;
+  }
+
+  > button {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+  }
+
+  @media (min-width: 768px) {
+    > svg {
+      right: 25px;
+      top: 20px;
+    }
   }
 `
