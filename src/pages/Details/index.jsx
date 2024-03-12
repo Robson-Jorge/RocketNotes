@@ -1,15 +1,23 @@
-import { ButtonText } from '../../components/ButtonText/index.jsx'
-import { Section } from '../../components/Section/index.jsx'
-import { Button } from '../../components/Button/index.jsx'
-import { Header } from '../../components/Header/index.jsx'
-import { Container, Links, Content } from './styles.js'
-import { Tag } from '../../components/Tag/index.jsx'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { api } from '../../services/api.js'
+import { Container, Links, Content } from './styles.js'
+import { DetailsSkeleton } from '../../skeletons/DetailsSkeleton/index.jsx'
+import {
+  Button,
+  ButtonText,
+  EditableNoteForm,
+  Header,
+  Section,
+  Tag,
+  TextMarkdown,
+} from '../../components/index.js'
 
 export function Details() {
   const [data, setData] = useState(null)
+
+  const [loading, setLoading] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
 
   const { id } = useParams()
   const navigate = useNavigate()
@@ -23,6 +31,21 @@ export function Details() {
     if (confirm) {
       await api.delete(`/notes/${id}`)
       navigate(-1)
+    }
+  }
+
+  async function handleUpdate(formData) {
+    const confirm = window.confirm(
+      'Tem certeza que deseja atualizar essa nota?',
+    )
+
+    if (confirm) {
+      setLoading(true)
+      await api.put(`/notes/${data.id}`, formData)
+
+      const response = await api.get(`/notes/${id}`)
+      setData(response.data)
+      setIsEditing(false)
     }
   }
 
@@ -47,8 +70,29 @@ export function Details() {
 
       {data && (
         <main>
-          <Content>
-            <ButtonText title="Excluir Nota" onClick={handleRemove} />
+          {isEditing ? (
+            <div>
+              <ButtonText
+                title="Cancelar"
+                type="button"
+                className="cancel-button"
+                onClick={() => setIsEditing(false)}
+              />
+              <EditableNoteForm
+                data={data}
+                loading={loading}
+                onSubmit={handleUpdate}
+              />
+            </div>
+          ) : (
+            <Content>
+              <div>
+                <ButtonText
+                  title="Editar Nota"
+                  onClick={() => setIsEditing(true)}
+                />
+                <ButtonText title="Excluir Nota" onClick={handleRemove} />
+              </div>
 
               <h1>{data.title}</h1>
 
@@ -77,6 +121,7 @@ export function Details() {
               )}
               <Button title="Voltar" onClick={handleBack} />
             </Content>
+          )}
         </main>
       )}
     </Container>

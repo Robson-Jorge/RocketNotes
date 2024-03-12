@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { emerge } from '../../styles/animate'
 
 export const Container = styled.div`
   width: 100%;
@@ -14,6 +15,37 @@ export const Container = styled.div`
     grid-area: content;
     overflow-y: scroll;
     padding: 64px 0;
+
+    > div {
+      max-width: 550px;
+      margin: 38px auto;
+
+      opacity: 0;
+      animation: 1s ${emerge} ease-in-out forwards;
+
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+
+      > p img {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 50px;
+      }
+    }
+
+    .cancel-button {
+      position: absolute;
+      right: 0;
+      top: -40px;
+      font-size: 18px;
+      transition: 0.2s ease-in-out;
+    }
+
+    .cancel-button:hover {
+      color: ${({ theme }) => theme.COLORS.ORANGE};
+      transform: scale(1.1);
+    }
   }
 `
 
@@ -27,6 +59,12 @@ export const Links = styled.ul`
       color: ${({ theme }) => theme.COLORS.WHITE};
     }
   }
+
+  > li:hover {
+    a {
+      color: ${({ theme }) => theme.COLORS.ORANGE};
+    }
+  }
 `
 
 export const Content = styled.div`
@@ -36,7 +74,11 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
 
-  > button:first-child {
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
     align-self: end;
   }
 
