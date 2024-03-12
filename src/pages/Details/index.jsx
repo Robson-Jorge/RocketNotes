@@ -50,33 +50,33 @@ export function Details() {
           <Content>
             <ButtonText title="Excluir Nota" onClick={handleRemove} />
 
-            <h1>{data.title}</h1>
+              <h1>{data.title}</h1>
 
-            <p>{data.description}</p>
+              <TextMarkdown value={data.description} />
 
-            {data.links && (
-              <Section title="Links úteis">
-                <Links>
-                  {data.links.map((link) => (
-                    <li key={String(link.id)}>
-                      <a href={link.url} target="_blank">
-                        {link.url}
-                      </a>
-                    </li>
+              {data.links && (
+                <Section title="Links úteis">
+                  <Links>
+                    {data.links.map((link) => (
+                      <li key={String(link.id)}>
+                        <a href={link.url} target="_blank">
+                          {link.url}
+                        </a>
+                      </li>
+                    ))}
+                  </Links>
+                </Section>
+              )}
+
+              {data.tags && (
+                <Section title="Marcadores">
+                  {data.tags.map((tag) => (
+                    <Tag key={String(tag.id)} title={tag.name} />
                   ))}
-                </Links>
-              </Section>
-            )}
-
-            {data.tags && (
-              <Section title="Marcadores">
-                {data.tags.map((tag) => (
-                  <Tag key={String(tag.id)} title={tag.name} />
-                ))}
-              </Section>
-            )}
-            <Button title="Voltar" onClick={handleBack} />
-          </Content>
+                </Section>
+              )}
+              <Button title="Voltar" onClick={handleBack} />
+            </Content>
         </main>
       )}
     </Container>
