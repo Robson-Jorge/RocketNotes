@@ -20,6 +20,8 @@ export function Home() {
   const [search, setSearch] = useState('')
   const [notes, setNotes] = useState([])
 
+  const [loading, setLoading] = useState(true)
+
   const navigate = useNavigate()
 
   function handleTagSelected(tagName) {
@@ -56,6 +58,7 @@ export function Home() {
     async function fetch() {
       const response = await api.get('/tags')
       setTags(response.data)
+      setLoading(false)
     }
     fetch()
   }, [])
@@ -66,6 +69,7 @@ export function Home() {
         `/notes?title=${search}&tags=${tagSelected}`,
       )
       setNotes(response.data)
+      setLoading(false)
     }
     fetchNotes()
   }, [tagSelected, search])
@@ -86,7 +90,9 @@ export function Home() {
             isActive={tagSelected.length === 0}
           />
         </li>
-        {tags &&
+        {loading ? (
+          <TagSkeleton />
+        ) : (
           tags.map((tag) => (
             <li key={String(tag.id)}>
               <ButtonText
@@ -95,7 +101,8 @@ export function Home() {
                 isActive={tagSelected.includes(tag.name)}
               />
             </li>
-          ))}
+          ))
+        )}
       </Menu>
 
       <Search>
@@ -108,14 +115,21 @@ export function Home() {
 
       <Content>
         <Section title="Minhas notas">
-          {notes.map((note) => (
-            <Note
-              key={String(note.id)}
-              data={note}
-              onClick={() => handleDetails(note.id)}
+          {loading ? (
+            <>
+              <NoteSkeleton />
+              <NoteSkeleton />
+            </>
+          ) : (
+            notes.map((note) => (
+              <Note
+                key={String(note.id)}
+                data={note}
+                onClick={() => handleDetails(note.id)}
                 onDeleteNote={(event) => handleRemove(note.id, event)}
-            />
-          ))}
+              />
+            ))
+          )}
         </Section>
       </Content>
 

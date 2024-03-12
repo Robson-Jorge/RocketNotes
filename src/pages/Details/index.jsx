@@ -68,7 +68,9 @@ export function Details() {
     <Container>
       <Header />
 
-      {data && (
+      {!data ? (
+        <DetailsSkeleton />
+      ) : (
         <main>
           {isEditing ? (
             <div>
