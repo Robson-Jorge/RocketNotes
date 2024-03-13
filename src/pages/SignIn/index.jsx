@@ -8,14 +8,10 @@ import { Button, Input } from '../../components/index'
 export function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { signIn } = useAuth()
-
-  const [loading, setLoading] = useState(false)
+  const { signIn, isSigned } = useAuth()
 
   function handleSignIn() {
-    setLoading(true)
     signIn({ email, password })
-    setLoading(false)
   }
 
   return (
@@ -41,7 +37,7 @@ export function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button title="Entrar" loading={loading} onClick={handleSignIn} />
+        <Button title="Entrar" loading={isSigned} onClick={handleSignIn} />
 
         <Link to="/register">Criar conta</Link>
       </Form>

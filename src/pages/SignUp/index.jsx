@@ -9,6 +9,7 @@ export function SignUp() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
@@ -17,6 +18,7 @@ export function SignUp() {
       return alert('Preencha todos os campos')
     }
 
+    setLoading(true)
     api
       .post('/users', { name, email, password })
       .then(() => {
@@ -30,6 +32,7 @@ export function SignUp() {
           alert('Não foi possível cadastrar o usuário')
         }
       })
+      .finally(() => setLoading(false))
   }
 
   return (
@@ -63,7 +66,7 @@ export function SignUp() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button title="Cadastrar" onClick={handleSignUp} />
+        <Button title="Cadastrar" loading={loading} onClick={handleSignUp} />
 
         <Link to="/">Voltar para o login</Link>
       </Form>
