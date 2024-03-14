@@ -17,6 +17,10 @@ export const Container = styled.header`
   justify-content: space-between;
 
   padding: 0 80px;
+
+  @media (max-width: 768px) {
+    padding: 0 32px;
+  }
 `
 
 export const Profile = styled(Link)`
@@ -60,5 +64,11 @@ export const Logout = styled.button`
 
   > svg:hover {
     color: ${({ theme }) => theme.COLORS.ORANGE};
+  }
+
+  @media (max-width: 768px) {
+    > svg {
+      font-size: 24px;
+    }
   }
 `

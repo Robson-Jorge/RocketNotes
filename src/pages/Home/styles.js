@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { fadeInUp, fadeInLeft } from '../../styles/animate'
 
 export const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
 
   display: grid;
@@ -16,6 +16,32 @@ export const Container = styled.div`
     'newnote content';
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
+
+  @media (max-width: 680px) {
+    grid-template-columns: ${({ isOpen }) =>
+      isOpen === false ? '0 1fr' : '1fr 0'};
+    ${({ isOpen }) =>
+      isOpen === false &&
+      `
+    > ${Menu}, ${Brand}, ${NewNote} {
+      visibility: hidden;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      animation: 0.8s fadeInLeft ease-in-out 0.1s forwards;
+    }
+  `}
+
+    ${({ isOpen }) =>
+      isOpen === true &&
+      `
+    > header, ${Content}, ${Search} {
+      visibility: hidden;
+      position: absolute;
+      right: 100%;
+      opacity: 0;
+    }`}
+  }
 `
 
 export const Brand = styled.div`
@@ -25,8 +51,9 @@ export const Brand = styled.div`
   animation: 0.8s ${fadeInLeft} ease-in-out 0.1s forwards;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 32px;
 
   border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_700};
 
@@ -35,6 +62,14 @@ export const Brand = styled.div`
   > h1 {
     font-size: 24px;
     color: ${({ theme }) => theme.COLORS.ORANGE};
+  }
+
+  @media (min-width: 680px) {
+    justify-content: center;
+
+    > button {
+      display: none;
+    }
   }
 `
 export const Menu = styled.ul`
@@ -55,6 +90,10 @@ export const Menu = styled.ul`
 export const Search = styled.div`
   grid-area: search;
   padding: 64px 64px 0;
+
+  @media (max-width: 480px) {
+    padding: 32px 32px 0;
+  }
 `
 
 export const Content = styled.div`
@@ -66,6 +105,28 @@ export const Content = styled.div`
   > section {
     opacity: 0;
     animation: 0.8s ${fadeInUp} ease-in-out 0.1s forwards;
+    position: relative;
+
+    > button:nth-child(2) {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  @media (max-width: 680px) {
+    padding: 0 32px;
+
+    > section {
+      > h2 {
+        text-align: end;
+      }
+
+      > button:nth-child(2) {
+        display: block;
+      }
+    }
   }
 `
 

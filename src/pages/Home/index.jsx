@@ -12,6 +12,7 @@ import {
   Note,
   Section,
 } from '../../components/index'
+import { ButtonMenuControl } from '../../components/ButtonMenuControl'
 
 export function Home() {
   const [tags, setTags] = useState([])
@@ -21,6 +22,7 @@ export function Home() {
   const [notes, setNotes] = useState([])
 
   const [loading, setLoading] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
   const navigate = useNavigate()
 
@@ -74,10 +76,15 @@ export function Home() {
     fetchNotes()
   }, [tagSelected, search])
 
+  function handleIsOpen() {
+    setIsOpen(!isOpen)
+  }
+
   return (
-    <Container>
+    <Container isOpen={isOpen}>
       <Brand>
         <h1>Rocketnotes</h1>
+        <ButtonMenuControl size={24} onClick={handleIsOpen} />
       </Brand>
 
       <Header />
@@ -115,6 +122,7 @@ export function Home() {
 
       <Content>
         <Section title="Minhas notas">
+          <ButtonMenuControl size={24} onClick={handleIsOpen} />
           {loading ? (
             <>
               <NoteSkeleton />

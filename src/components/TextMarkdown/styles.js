@@ -2,7 +2,6 @@ import Highlight from 'react-highlight'
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 550px;
   margin: 0;
   margin-top: 15px;
   padding: 1em;

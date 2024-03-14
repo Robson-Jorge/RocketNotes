@@ -50,6 +50,13 @@ export const Container = styled.div`
   & > div canvas {
     border-radius: 50%;
   }
+
+  @media (max-width: 768px) {
+    & > div:nth-child(1) {
+      width: 150px;
+      height: 150px;
+    }
+  }
 `
 
 export const Actions = styled.div`

@@ -9,6 +9,10 @@ export const Container = styled.div`
   align-items: stretch;
 
   overflow: hidden;
+
+  @media (max-width: 980px) {
+    justify-content: center;
+  }
 `
 
 export const Form = styled.form`
@@ -43,6 +47,14 @@ export const Form = styled.form`
     margin-top: 124px;
     color: ${({ theme }) => theme.COLORS.ORANGE};
   }
+
+  @media (max-width: 480px) {
+    padding: 0 48px;
+
+    > a {
+      margin-top: 48px;
+    }
+  }
 `
 
 export const Background = styled.div`
@@ -52,4 +64,8 @@ export const Background = styled.div`
 
   opacity: 0;
   animation: ${fadeInRight} 1s ease-in-out forwards;
+
+  @media (max-width: 980px) {
+    display: none;
+  }
 `

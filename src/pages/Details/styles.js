@@ -18,7 +18,6 @@ export const Container = styled.div`
 
     > div {
       max-width: 550px;
-      margin: 38px auto;
 
       opacity: 0;
       animation: 1s ${emerge} ease-in-out forwards;
@@ -47,6 +46,23 @@ export const Container = styled.div`
       transform: scale(1.1);
     }
   }
+
+  @media (max-width: 648px) {
+    > main div {
+      max-width: 425px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    > main {
+      padding: 32px 0;
+
+      > div {
+        max-width: 375px;
+        padding: 0 20px;
+      }
+    }
+  }
 `
 
 export const Links = styled.ul`
@@ -54,6 +70,7 @@ export const Links = styled.ul`
 
   > li {
     margin-top: 12px;
+    word-wrap: break-word;
 
     a {
       color: ${({ theme }) => theme.COLORS.WHITE};
@@ -92,5 +109,11 @@ export const Content = styled.div`
     font-size: 16px;
     margin-top: 16px;
     text-align: justify;
+  }
+
+  @media (max-width: 648px) {
+    > h1 {
+      font-size: 32px;
+    }
   }
 `

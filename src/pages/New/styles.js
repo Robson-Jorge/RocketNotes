@@ -31,6 +31,10 @@ export const Container = styled.div`
       opacity: 0;
       animation: 1s ${emerge} ease-in-out forwards;
     }
+
+    @media (max-width: 680px) {
+      padding: 32px;
+    }
   }
 
   .tags {

@@ -32,6 +32,10 @@ export const Container = styled.button`
   }
 
   @media (min-width: 768px) {
+    > h1 {
+      font-size: 20px;
+    }
+
     > svg {
       right: 25px;
       top: 20px;

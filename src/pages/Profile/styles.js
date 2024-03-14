@@ -24,6 +24,12 @@ export const Container = styled.div`
       font-size: 24px;
     }
   }
+
+  @media (max-width: 768px) {
+    > header {
+      padding: 0 32px;
+    }
+  }
 `
 
 export const Form = styled.form`
@@ -61,5 +67,9 @@ export const Form = styled.form`
   > button {
     opacity: 0;
     animation: 0.8s ${fadeInUp} ease-in-out 0.5s forwards;
+  }
+
+  @media (max-width: 768px) {
+    margin: 30px 32px 0;
   }
 `
