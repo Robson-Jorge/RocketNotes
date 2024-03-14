@@ -67,7 +67,11 @@ export const EditableAvatar = ({ avatarUrl, setAvatarFile }) => {
             border={0}
           />
         ) : (
-          <img src={avatarUrl || avatarPlaceholder} alt="Avatar" />
+          <img
+            src={avatarUrl || avatarPlaceholder}
+            onError={(e) => (e.target.src = avatarPlaceholder)}
+            alt="Avatar"
+          />
         )}
       </div>
 

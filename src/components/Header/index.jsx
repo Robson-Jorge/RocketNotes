@@ -12,7 +12,11 @@ export function Header() {
   return (
     <Container>
       <Profile to={'/profile'}>
-        <img src={avatarUrl} alt={user.name} />
+        <img
+          src={avatarUrl}
+          onError={(e) => (e.target.src = avatarPlaceholder)}
+          alt={user.name}
+        />
 
         <div>
           <span>Bem-vindo</span>
