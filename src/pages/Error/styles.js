@@ -43,4 +43,10 @@ export const Container = styled.div`
     text-align: center;
     margin-top: 10px;
   }
+
+  @media (max-width: 680px) {
+    img {
+      width: 80%;
+    }
+  }
 `
