@@ -46,6 +46,7 @@ export function Details() {
       const response = await api.get(`/notes/${id}`)
       setData(response.data)
       setIsEditing(false)
+      setLoading(false)
     }
   }
 
