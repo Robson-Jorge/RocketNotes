@@ -23,6 +23,11 @@ export const Container = styled.button`
     width: 100%;
     display: flex;
     margin-top: 24px;
+    overflow-x: auto;
+
+    > span {
+      margin-bottom: 8px;
+    }
   }
 
   > button {
