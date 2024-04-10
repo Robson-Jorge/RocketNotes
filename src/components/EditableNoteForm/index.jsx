@@ -33,6 +33,15 @@ export function EditableNoteForm({ data, loading = false, onSubmit }) {
     setTags((prevState) => prevState.filter((tag) => tag !== deleted))
   }
 
+  function handleSetNewTag(e) {
+    const newTag = e.target.value
+    if (newTag.length > 24) {
+      alert('Por favor , insira um nome de tag com no máximo 20 caracteres')
+      return null
+    }
+    setNewTag(newTag)
+  }
+
   async function handleSubmit() {
     const formData = noteFormValidation(
       title,
@@ -92,7 +101,7 @@ export function EditableNoteForm({ data, loading = false, onSubmit }) {
             isNew
             placeholder="Nova tag"
             value={newTag}
-            onChange={(e) => setNewTag(e.target.value)}
+            onChange={(e) => handleSetNewTag(e)}
             onClick={handleAddTag}
           />
         </div>
