@@ -75,6 +75,7 @@ export const Brand = styled.div`
 export const Menu = styled.ul`
   grid-area: menu;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+  overflow-y: auto;
 
   opacity: 0;
   animation: 0.8s ${fadeInLeft} ease-in-out 0.1s forwards;
