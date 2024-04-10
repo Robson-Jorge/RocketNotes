@@ -63,7 +63,7 @@ export function Home() {
       setLoading(false)
     }
     fetch()
-  }, [])
+  }, [notes])
 
   useEffect(() => {
     async function fetchNotes() {
