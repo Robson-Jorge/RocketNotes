@@ -7,10 +7,11 @@ import { useState } from 'react'
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
 
 export const EditableAvatar = ({ avatarUrl, setAvatarFile }) => {
-  const [image, setImage] = useState(avatarUrl)
+  const [image, setImage] = useState(null)
   const [scale, setScale] = useState(1)
   const [isEditing, setIsEditing] = useState(false)
   const [editor, setEditor] = useState(null)
+  const [avatar, setAvatar] = useState(avatarUrl || avatarPlaceholder)
 
   const handleChangeAvatar = (e) => {
     const file = e.target.files[0]
@@ -43,6 +44,9 @@ export const EditableAvatar = ({ avatarUrl, setAvatarFile }) => {
           const file = new File([blob], 'avatar.png', { type: 'image/png' })
           setAvatarFile(file)
         }
+
+        const test = URL.createObjectURL(blob)
+        setAvatar(test)
       }, 'image/png')
 
       setIsEditing(false)
@@ -68,7 +72,7 @@ export const EditableAvatar = ({ avatarUrl, setAvatarFile }) => {
           />
         ) : (
           <img
-            src={avatarUrl || avatarPlaceholder}
+            src={avatar}
             onError={(e) => (e.target.src = avatarPlaceholder)}
             alt="Avatar"
           />
