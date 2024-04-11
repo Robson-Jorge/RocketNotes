@@ -45,8 +45,8 @@ export const EditableAvatar = ({ avatarUrl, setAvatarFile }) => {
           setAvatarFile(file)
         }
 
-        const test = URL.createObjectURL(blob)
-        setAvatar(test)
+        const profileAvatar = URL.createObjectURL(blob)
+        setAvatar(profileAvatar)
       }, 'image/png')
 
       setIsEditing(false)
